@@ -1,0 +1,1 @@
+DATA_PATH_HOME = "D:/Programs/Python/MayiBigData/data/"
