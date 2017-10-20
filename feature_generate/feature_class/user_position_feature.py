@@ -11,5 +11,6 @@ class UserPositionFeature(Feature):
         s_mall_data = pd.read_csv(self._data_home+'single_mall/%s.csv' % mall_name, header=0)
         s_mall_data.columns = ['row_id', 'user_id', 'shop_id', 'time_stamp', 'longitude_user', 'latitude_user',
                                'wifi_infos', 'category_id', 'longitude_shop', 'latitude_shop', 'price', 'mall_id']
-        s_mall_data_longitude_and_latitude = s_mall_data[['longitude_user', 'latitude_user', ]]
+        s_mall_data_longitude_and_latitude = s_mall_data[['longitude_user', 'latitude_user']]
+
         return s_mall_data_longitude_and_latitude

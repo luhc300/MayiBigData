@@ -2,6 +2,7 @@ from feature_generate.feature_class.wifi_strength_feature import WifiStrengthFea
 from feature_generate.feature_class.wifi_connection_feature import WifiConnectionFeature
 from feature_generate.feature_class.user_position_feature import UserPositionFeature
 from feature_generate.feature_class.time_feature import TimeFeature
+from feature_generate.feature_class.distance_feature import DistanceFeature
 import pandas as pd
 from configs.path_config import DATA_PATH_HOME
 
@@ -29,6 +30,7 @@ class FeatureGenerator:
             feature = action.generate(mall_name)
             if flag:
                 result = feature
+                flag = False
             else:
                 result = pd.concat([result,feature], axis=1)
             print(action.get_feature_name() + " finished")
@@ -37,6 +39,8 @@ class FeatureGenerator:
 
 if (__name__ == "__main__"):
     fg = FeatureGenerator()
-    fg.set_action_list([WifiStrengthFeature(),WifiConnectionFeature(), UserPositionFeature(), TimeFeature()])
-    result = fg.generate("m_615")
-    result.to_csv(DATA_PATH_HOME + "single_mall_generated_feature/m_615.csv")
+    #fg.set_action_list([WifiStrengthFeature(),WifiConnectionFeature(), UserPositionFeature(), TimeFeature()])
+    #fg.set_action_list([DistanceFeature()])
+    fg.set_action_list([UserPositionFeature()])
+    result = fg.generate("m_6167")
+    result.to_csv(DATA_PATH_HOME + "single_mall_generated_feature/m_6167_3.csv",index=False)
