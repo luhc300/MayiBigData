@@ -4,6 +4,7 @@ from feature_generate.feature_class.user_position_feature import UserPositionFea
 from feature_generate.feature_class.time_feature import TimeFeature
 from feature_generate.feature_class.distance_feature import DistanceFeature
 import pandas as pd
+import numpy as np
 from configs.path_config import DATA_PATH_HOME
 
 
@@ -41,6 +42,12 @@ if (__name__ == "__main__"):
     fg = FeatureGenerator()
     #fg.set_action_list([WifiStrengthFeature(),WifiConnectionFeature(), UserPositionFeature(), TimeFeature()])
     #fg.set_action_list([DistanceFeature()])
-    fg.set_action_list([UserPositionFeature()])
-    result = fg.generate("m_6167")
-    result.to_csv(DATA_PATH_HOME + "single_mall_generated_feature/m_6167_3.csv",index=False)
+    fg.set_action_list([DistanceFeature()])
+    mall_names = pd.read_csv(DATA_PATH_HOME + "mall_name.csv")
+    name_list = list(np.array(mall_names).reshape(-1))
+    i = 0
+    for name in name_list:
+        print(i)
+        i+=1
+        result = fg.generate(name, old_path=DATA_PATH_HOME + "second/" + name + "_f.csv")
+        result.to_csv(DATA_PATH_HOME + "single_mall_generated_feature/20171020/" + name + ".csv",index=False)

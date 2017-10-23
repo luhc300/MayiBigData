@@ -58,3 +58,8 @@ class DistanceFeature(Feature):
         dr = flatten / 8 * (c1 - c2)
         distance = ra * (xx + dr)
         return distance
+
+if __name__ == "__main__":
+    result = DistanceFeature().generate("m_6167")
+    print(result)
+    result.to_csv("D:/Programs/Python/MayiBigData/data/single_mall_generated_feature/m_6167_2.csv")
